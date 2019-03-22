@@ -8,7 +8,7 @@ export default class HomeScreen extends React.Component {
         return(
             <View>
                 <Text>Home Page</Text>
-                <Button title="Battle !" onPress={() => this.props.navigation.navigate("Battle")}></Button> 
+                <Button title={"Battle !"} onPress={() => this.props.navigation.navigate("Battle")}>Battle !</Button>
             </View>
         )
     }
