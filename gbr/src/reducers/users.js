@@ -1,10 +1,8 @@
 const users = (state=[], action) => {
     switch(action.type) {
         case "ADD_USER":
-            console.log("Old state ->", state)
-            newState = [...state, action.user]
-            console.log("New State ->", newState)
-            return(newState)
+            newUser = {...action.user}
+            return([...state, newUser])
         default: 
             return(state)
     }

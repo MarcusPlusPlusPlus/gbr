@@ -4,11 +4,13 @@ import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
 
 const ShowSelectedUser = ({users}) => (
-    <FlatList data={users} renderItem={(user) => <Text key={user.login}>{user.login}</Text>} />
+
+    <FlatList data={users} keyExtractor={(item, index) => index} renderItem={(user, index) => <Text key={user.id}>{user.login}</Text>} />
 )
 
 ShowSelectedUser.PropTypes = {
     users: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         login: PropTypes.string.isRequired,
         bio: PropTypes.string,

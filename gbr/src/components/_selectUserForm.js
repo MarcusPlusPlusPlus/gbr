@@ -17,6 +17,8 @@ let SelectUserForm = ({dispatch})  => {
             .then( data => {
                 if(data.status!=200) { alert("No users found !"); return; }
                 data.json().then(({login, name, avatar_url, bio, public_repos, followers}) => {
+                    console.log("TYPE OF REPO", typeof public_repos)
+                    console.log("TYPE OF REPO", typeof followers)
                     selectedUser = {name, login, bio, followers, avatar: avatar_url, repos: public_repos}
                     dispatch(addUser(selectedUser))
                 })
