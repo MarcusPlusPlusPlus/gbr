@@ -3,17 +3,8 @@ import { FlatList, Text } from "react-native"
 import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
 
-const mapStateToProps = (state) => ({
-    users: state.users
-  })
-
-const _selectUserShow = connect(
-    mapStateToProps
-)(ShowSelectedUser)
-
-
 const ShowSelectedUser = ({users}) => (
-    <FlatList data={users} renderItem={(user) => <Text>{user.login}</Text>} />
+    <FlatList data={users} renderItem={(user) => <Text key={user.login}>{user.login}</Text>} />
 )
 
 ShowSelectedUser.PropTypes = {
@@ -27,4 +18,18 @@ ShowSelectedUser.PropTypes = {
       }).isRequired).isRequired,
     }
 
-export default _selectUserShow
+const getUsers = (state) => {
+  console.log("@@@@@")
+  console.log(state)
+  return(state.users)
+}
+
+const mapStateToProps = (state) => ({
+    users: getUsers(state)
+  })
+
+const SelectUserShow = connect(
+    mapStateToProps
+)(ShowSelectedUser)
+
+export default SelectUserShow
