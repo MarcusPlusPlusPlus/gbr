@@ -17,11 +17,13 @@ class SelectUserForm extends React.Component {
         fetch(URL, { method: "GET", headers: {Accept: "application/vnd.github.v3+json"} })
             .then( data => {
                 if(data.status!=200) { alert("No users found !"); return; }
-                data.json().then( user => console.log(user))
+                data.json().then(({login, name, avatar_url, bio, public_repos, followers}) => {
+                    selectedUser = {name, login, bio, followers, avatar: avatar_url, repos: public_repos}
+                    dispatch(addUser(selectedUser))
+                })
             })
-            .catch(error => console.log("error"))
+            .catch(error => console.log(error))
     }
-
     render() {
         return(
             <View>
