@@ -21,8 +21,13 @@ ShowSelectedUser.PropTypes = {
       }).isRequired).isRequired,
     }
 
+const getUsers = state => {
+  console.log("List of users ->", state.users)
+  return(state.users)
+}
+
 const mapStateToProps = (state) => ({
-    users: state.users
+    users: getUsers(state)
   })
 
 const SelectUserShow = connect(
