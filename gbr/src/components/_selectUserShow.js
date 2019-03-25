@@ -1,11 +1,12 @@
 import * as React from "react"
 import { FlatList, Text } from "react-native"
-import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
+import ShowUser from "./ShowUser"
+
 
 const ShowSelectedUser = ({users}) => (
-
-    <FlatList data={users} keyExtractor={(item, index) => index} renderItem={(user, index) => <Text key={user.id}>{user.login}</Text>} />
+    <FlatList data={users} keyExtractor={(item, index) => index.toString()} renderItem={(user) => <ShowUser key={user.id} {...user} />} />
 )
 
 ShowSelectedUser.PropTypes = {
@@ -20,14 +21,8 @@ ShowSelectedUser.PropTypes = {
       }).isRequired).isRequired,
     }
 
-const getUsers = (state) => {
-  console.log("@@@@@")
-  console.log(state)
-  return(state.users)
-}
-
 const mapStateToProps = (state) => ({
-    users: getUsers(state)
+    users: state.users
   })
 
 const SelectUserShow = connect(
